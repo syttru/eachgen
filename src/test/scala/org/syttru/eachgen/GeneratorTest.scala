@@ -4,10 +4,10 @@ import org.junit._
 import Assert._
 
 @Test
-class TemplateTest {
+class GeneratorTest {
   @Test
   def testGenerate = {
-    var tpl = new Template("insert into tbl values({1}, '{2}', {3});")
+    var tpl = new Generator("insert into tbl values({1}, '{2}', {3});")
     assertEquals(
         "insert into tbl values(1, 'apple', 300);", 
         tpl generate List("1", "apple", "300"))
@@ -18,7 +18,7 @@ class TemplateTest {
         "insert into tbl values(3, 'greep', {3});",
         tpl generate List("3", "greep"))
 
-    tpl = new Template("{1}, {2}, {3}, {1}, {2}, {3}")
+    tpl = new Generator("{1}, {2}, {3}, {1}, {2}, {3}")
     assertEquals(
         "1, apple, 300, 1, apple, 300", 
         tpl generate List("1", "apple", "300"))
